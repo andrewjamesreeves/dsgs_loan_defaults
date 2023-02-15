@@ -1,5 +1,6 @@
 {
     "filepaths": {
-        "training_data": "../data/master_data/test.csv"
+        "training_data": "../data/master_data/test.csv",
+        "reference_data": "../data/data_reference_file.csv"
     }
 }
