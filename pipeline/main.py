@@ -13,11 +13,12 @@ def main():
     with open(paths_file) as f:
         paths = json.load(f)
 
-    #set up load data
+    #load training_data and data reference
     training_data = ld.main(os.path.join(os.getcwd(), paths['filepaths']['training_data']))
+    reference_data = ld.main(os.path.join(os.getcwd(), paths['filepaths']['reference_data']))
 
     #pass data to transform data/preprocessing data areas
-    td.main(training_data)
+    td.main(training_data, reference_data)
 
 
     return
