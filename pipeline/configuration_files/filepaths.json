@@ -1,0 +1,5 @@
+{
+    "filepaths": {
+        "training_data": "../data/master_data/test.csv"
+    }
+}
