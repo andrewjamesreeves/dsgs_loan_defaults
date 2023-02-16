@@ -13,12 +13,12 @@ def convert_categorical_to_numeric(df, ref):
     
     return df
 
-# def split_categorical_variables(df, ref):
+def split_categorical_variables(df, ref):
 
-#     for col in df.loc[:,(ref[ref.variable_type=='cat']['variable_name'])]:
-#         df = pd.concat([df, pd.get_dummies(df[col])], axis=1)
+    for col in df.loc[:,(ref[ref.variable_type=='cat']['variable_name'])]:
+        df = pd.concat([df, pd.get_dummies(df[col], prefix=col, prefix_sep='_')], axis=1)
 
-#     return df
+    return df
 
 def convert_binary_string_to_numeric(df, ref):
 
@@ -30,9 +30,8 @@ def convert_binary_string_to_numeric(df, ref):
 
 def main(df, data_ref):
 
-    (df.pipe(format_column_names, data_ref)
-        .pipe(convert_categorical_to_numeric, data_ref)
-        #.pipe(split_categorical_variables, data_ref)
+    df = (df.pipe(format_column_names, data_ref)
+        .pipe(split_categorical_variables, data_ref)
         .pipe(convert_binary_string_to_numeric, data_ref))
     
 
