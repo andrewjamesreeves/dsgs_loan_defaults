@@ -51,4 +51,4 @@ def main(df, data_ref, paths):
     
     du.save_data(df, os.path.join(os.getcwd(), paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
 
-    return
+    return df

@@ -18,7 +18,7 @@ def main():
     reference_data = du.load_data(os.path.join(os.getcwd(), paths['filepaths']['reference_data']))
 
     #pass data to transform data/preprocessing data areas
-    td.main(training_data, reference_data, paths)
+    training_data_pp = td.main(training_data, reference_data, paths)
 
     return
 
