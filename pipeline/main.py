@@ -1,4 +1,4 @@
-import preprocessing.load_data as ld
+import data_utils as du
 import preprocessing.transform_data as td
 
 import pandas as pd
@@ -14,12 +14,11 @@ def main():
         paths = json.load(f)
 
     #load training_data and data reference
-    training_data = ld.main(os.path.join(os.getcwd(), paths['filepaths']['training_data']))
-    reference_data = ld.main(os.path.join(os.getcwd(), paths['filepaths']['reference_data']))
+    training_data = du.load_data(os.path.join(os.getcwd(), paths['filepaths']['training_data']))
+    reference_data = du.load_data(os.path.join(os.getcwd(), paths['filepaths']['reference_data']))
 
     #pass data to transform data/preprocessing data areas
-    td.main(training_data, reference_data)
-
+    td.main(training_data, reference_data, paths)
 
     return
 
