@@ -1,10 +1,10 @@
-from models.ols import apply_ols
+from models.logit import apply_logit
 from models.lasso import apply_lasso
 
 def get_available_models():
 
     models = {
-        "ols": apply_ols,
+        "logit": apply_logit,
         "lasso": apply_lasso
     }
 

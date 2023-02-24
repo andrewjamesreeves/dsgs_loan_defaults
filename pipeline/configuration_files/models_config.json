@@ -1,6 +1,6 @@
 {
-    "ols": {
-        "model":"ols"
+    "logit": {
+        "model":"logit"
 
     },
     "lasso": {
