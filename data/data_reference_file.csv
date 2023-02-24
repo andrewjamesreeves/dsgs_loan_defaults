@@ -3,7 +3,7 @@ Loan Amount,loan_amount,con,N
 Funded Amount,funded_amount,con,N
 Funded Amount Investor,funded_amount_investor,con,N
 Term,term,dis,N
-Batch Enrolled,batch_enrolled,dis,Y
+Batch Enrolled,batch_enrolled,cat,Y
 Interest Rate,interest_rate,con,N
 Grade,grade,cat,Y
 Sub Grade,sub_grade,cat,Y

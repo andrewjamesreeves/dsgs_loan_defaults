@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def save_data(df, fp):
 
@@ -15,3 +16,10 @@ def load_data(fp):
 def main():
 
     return
+
+def current_file_dir():
+    
+    abspath = os.path.abspath(__file__)
+    dir_name = os.path.dirname(abspath)
+    
+    return dir_name

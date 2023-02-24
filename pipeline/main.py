@@ -7,20 +7,23 @@ import os
 
 
 def main():
+    
+    #get file path of current file
+    dir_name = du.current_file_dir()
 
     #load config files
-    paths_file = os.path.join(os.getcwd(), 'configuration_files\\filepaths.json')
+    paths_file = os.path.join(dir_name, 'configuration_files\\filepaths.json')
     with open(paths_file) as f:
         paths = json.load(f)
 
     #load training_data and data reference
-    training_data = du.load_data(os.path.join(os.getcwd(), paths['filepaths']['training_data']))
-    reference_data = du.load_data(os.path.join(os.getcwd(), paths['filepaths']['reference_data']))
+    training_data = du.load_data(os.path.join(dir_name, paths['filepaths']['training_data']))
+    reference_data = du.load_data(os.path.join(dir_name, paths['filepaths']['reference_data']))
 
     #pass data to transform data/preprocessing data areas
-    training_data_pp = td.main(training_data, reference_data, paths)
+    training_data_pp = td.main(training_data, reference_data, paths, dir_name)
 
-    return
+    # return
 
 if __name__ == "__main__":
   main()
