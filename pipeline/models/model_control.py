@@ -2,16 +2,27 @@ from models.ols import apply_ols
 from models.lasso import apply_lasso
 
 def get_available_models():
+
+    models = {
+        "ols": apply_ols,
+        "lasso": apply_lasso
+    }
+
+    return models
+
+def run_models(models_config, models, training_data, test_data):
+
+    for model in models_config:
+        print(f'Running Model -> {model}')
+        model_output = models[model](training_data, test_data, models_config[model])
+
     return
 
-def run_models():
-    return
+def main(training_data, test_data, reference_data, models_config, paths, dir_name):
 
-def main(training_data_pp, reference_data, models_config, paths, dir_name):
+    models = get_available_models()
 
-    get_available_models()
-
-    run_models()
+    run_models(models_config, models, training_data, test_data)
 
 
     return

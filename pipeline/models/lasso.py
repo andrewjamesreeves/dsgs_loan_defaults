@@ -1,2 +1,2 @@
-def apply_lasso():
+def apply_lasso(training_data, test_data, config):
     return
