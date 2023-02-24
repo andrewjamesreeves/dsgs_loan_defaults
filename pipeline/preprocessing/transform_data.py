@@ -24,7 +24,7 @@ def convert_categorical_to_numeric(df, ref):
 def split_categorical_variables(df, ref):
 
     for col in df.loc[:,(ref[ref.variable_type=='cat']['variable_name'])]:
-        df = pd.concat([df, pd.get_dummies(df[col], prefix=col, prefix_sep='_')], axis=1)
+        df = pd.concat([df, pd.get_dummies(df[col], prefix=col, prefix_sep='_', drop_first=True)], axis=1)
 
     return df
 
@@ -83,7 +83,7 @@ def main(df, data_ref, paths, dir_name):
     #apply scalar transformation
     df = transform_numeric_variables(df, data_ref)
 
-    du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
+    #du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
 
     #split data
     training_data, test_data = split_data(df)
