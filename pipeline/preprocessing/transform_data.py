@@ -1,5 +1,6 @@
 import utilities.data_utils as du
 from pandas.api.types import is_string_dtype
+from sklearn.model_selection import train_test_split
 
 import pandas as pd
 import numpy as np
@@ -60,6 +61,12 @@ def transform_numeric_variables(df, ref):
 
     return df_scaled
 
+def split_data(df):
+
+    training_data, test_data = train_test_split(df, test_size=0.2, random_state=3)
+
+    return training_data, test_data
+
 
 
 def main(df, data_ref, paths, dir_name):
@@ -76,7 +83,9 @@ def main(df, data_ref, paths, dir_name):
     #apply scalar transformation
     df = transform_numeric_variables(df, data_ref)
 
-    
     du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
 
-    return df
+    #split data
+    training_data, test_data = split_data(df)
+
+    return training_data, test_data
