@@ -68,6 +68,9 @@ def split_data(df):
     return training_data, test_data
 
 
+def remove_bad_vars(df):
+
+    return df.drop(['payment_plan', 'accounts_delinquent'], axis=1)
 
 def main(df, data_ref, paths, dir_name):
 
@@ -82,6 +85,7 @@ def main(df, data_ref, paths, dir_name):
 
     #apply scalar transformation
     df = transform_numeric_variables(df, data_ref)
+    df = remove_bad_vars(df)
 
     #du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
 
