@@ -1,4 +1,4 @@
-import data_utils as du
+import utilities.data_utils as du
 from pandas.api.types import is_string_dtype
 
 import pandas as pd
@@ -69,7 +69,12 @@ def main(df, data_ref, paths, dir_name):
         .pipe(convert_categorical_to_numeric, data_ref)
         .pipe(convert_binary_string_to_numeric, data_ref)
         .pipe(convert_string_elements))
-        #.pipe(transform_numeric_variables, data_ref))
+
+    #apply encoding
+
+
+    #apply scalar transformation
+    df = transform_numeric_variables(df, data_ref)
 
     
     du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
