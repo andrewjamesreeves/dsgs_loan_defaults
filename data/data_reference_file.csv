@@ -1,35 +1,35 @@
 variable_name_original,variable_name,variable_type,is_string
-Loan Amount,loan_amount,con,N
-Funded Amount,funded_amount,con,N
-Funded Amount Investor,funded_amount_investor,con,N
-Term,term,dis,N
+Loan Amount,loan_amount,num,N
+Funded Amount,funded_amount,num,N
+Funded Amount Investor,funded_amount_investor,num,N
+Term,term,num,N
 Batch Enrolled,batch_enrolled,cat,Y
-Interest Rate,interest_rate,con,N
+Interest Rate,interest_rate,num,N
 Grade,grade,cat,Y
 Sub Grade,sub_grade,cat,Y
 Home Ownership,home_ownership,cat,Y
-Employment Duration,employment_duration,con,N
+Employment Duration,employment_duration,num,N
 Verification Status,verification_status,cat,Y
 Payment Plan,payment_plan,binary,Y
 Loan Title,loan_title,cat,Y
-Debit to Income,debit_to_income,con,N
+Debit to Income,debit_to_income,num,N
 Delinquency - two years,delinquency_two_years,cat,N
 Inquires - six months,inquires_six_months,cat,N
-Open Account,open_account,dis,N
+Open Account,open_account,num,N
 Public Record,public_record,binary,N
-Revolving Balance,revolving_balance,dis,N
-Revolving Utilities,revolving_utilities,dis,N
-Total Accounts,total_accounts,dis,N
+Revolving Balance,revolving_balance,num,N
+Revolving Utilities,revolving_utilities,num,N
+Total Accounts,total_accounts,num,N
 Initial List Status,initial_list_status,binary,Y
-Total Received Interest,total_received_interest,con,N
-Total Received Late Fee,total_received_late_fee,con,N
-Recoveries,recoveries,con,N
-Collection Recovery Fee,collection_recovery_fee,con,N
-Collection 12 months Medical,collection_12_months_medical,con,N
+Total Received Interest,total_received_interest,num,N
+Total Received Late Fee,total_received_late_fee,num,N
+Recoveries,recoveries,num,N
+Collection Recovery Fee,collection_recovery_fee,num,N
+Collection 12 months Medical,collection_12_months_medical,num,N
 Application Type,application_type,binary,Y
-Last week Pay,last_week_pay,discrete,N
-Accounts Delinquent,accounts_delinquent,con,N
+Last week Pay,last_week_pay,num,N
+Accounts Delinquent,accounts_delinquent,num,N
 Total Collection Amount,total_collection_amount,discrete,N
 Total Current Balance,total_current_balance,discrete,N
-Total Revolving Credit Limit,total_revolving_credit_limit,con,N
+Total Revolving Credit Limit,total_revolving_credit_limit,num,N
 Loan Status,loan_status,binary,N

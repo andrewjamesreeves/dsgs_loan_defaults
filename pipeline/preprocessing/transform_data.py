@@ -45,7 +45,7 @@ def convert_string_elements(df):
 def transform_numeric_variables(df, ref):
     
     # Select only the numerical data.
-    numerical_data = df.loc[:,(ref[ref.variable_type.isin(['con', 'dis', 'discrete'])]['variable_name'])]
+    numerical_data = df.loc[:,(ref[ref.variable_type.isin(['num'])]['variable_name'])]
 
     # Create the encoder object
     robust_scaler = RobustScaler()
