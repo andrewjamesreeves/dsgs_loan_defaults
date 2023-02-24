@@ -1,9 +1,11 @@
 {
     "ols": {
+        "model":"ols"
 
     },
     "lasso": {
-        
+        "model":"lasso"
+
     }
 
 }
