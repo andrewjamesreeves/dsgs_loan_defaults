@@ -85,9 +85,10 @@ def main(df, data_ref, paths, dir_name):
 
     #apply scalar transformation
     df = transform_numeric_variables(df, data_ref)
+
     df = remove_bad_vars(df)
 
-    #du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
+    du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
 
     #split data
     training_data, test_data = split_data(df)
