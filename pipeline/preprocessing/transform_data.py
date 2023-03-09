@@ -1,5 +1,6 @@
-import data_utils as du
+import utilities.data_utils as du
 from pandas.api.types import is_string_dtype
+from sklearn.model_selection import train_test_split
 
 import pandas as pd
 import numpy as np
@@ -23,7 +24,7 @@ def convert_categorical_to_numeric(df, ref):
 def split_categorical_variables(df, ref):
 
     for col in df.loc[:,(ref[ref.variable_type=='cat']['variable_name'])]:
-        df = pd.concat([df, pd.get_dummies(df[col], prefix=col, prefix_sep='_')], axis=1)
+        df = pd.concat([df, pd.get_dummies(df[col], prefix=col, prefix_sep='_', drop_first=True)], axis=1)
 
     return df
 
@@ -60,7 +61,16 @@ def transform_numeric_variables(df, ref):
 
     return df_scaled
 
+def split_data(df):
 
+    training_data, test_data = train_test_split(df, test_size=0.2, random_state=3)
+
+    return training_data, test_data
+
+
+def remove_bad_vars(df):
+
+    return df.drop(['payment_plan', 'accounts_delinquent'], axis=1)
 
 def main(df, data_ref, paths, dir_name):
 
@@ -69,9 +79,18 @@ def main(df, data_ref, paths, dir_name):
         .pipe(convert_categorical_to_numeric, data_ref)
         .pipe(convert_binary_string_to_numeric, data_ref)
         .pipe(convert_string_elements))
-        #.pipe(transform_numeric_variables, data_ref))
 
-    
+    #apply encoding
+
+
+    #apply scalar transformation
+    df = transform_numeric_variables(df, data_ref)
+
+    df = remove_bad_vars(df)
+
     du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
 
-    return df
+    #split data
+    training_data, test_data = split_data(df)
+
+    return training_data, test_data

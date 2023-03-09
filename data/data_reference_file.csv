@@ -1,35 +1,35 @@
-variable_name_original,variable_name,variable_type,is_string
-Loan Amount,loan_amount,num,N
-Funded Amount,funded_amount,num,N
-Funded Amount Investor,funded_amount_investor,num,N
-Term,term,num,N
-Batch Enrolled,batch_enrolled,cat,Y
-Interest Rate,interest_rate,num,N
-Grade,grade,cat,Y
-Sub Grade,sub_grade,cat,Y
-Home Ownership,home_ownership,cat,Y
-Employment Duration,employment_duration,num,N
-Verification Status,verification_status,cat,Y
-Payment Plan,payment_plan,binary,Y
-Loan Title,loan_title,cat,Y
-Debit to Income,debit_to_income,num,N
-Delinquency - two years,delinquency_two_years,cat,N
-Inquires - six months,inquires_six_months,cat,N
-Open Account,open_account,num,N
-Public Record,public_record,binary,N
-Revolving Balance,revolving_balance,num,N
-Revolving Utilities,revolving_utilities,num,N
-Total Accounts,total_accounts,num,N
-Initial List Status,initial_list_status,binary,Y
-Total Received Interest,total_received_interest,num,N
-Total Received Late Fee,total_received_late_fee,num,N
-Recoveries,recoveries,num,N
-Collection Recovery Fee,collection_recovery_fee,num,N
-Collection 12 months Medical,collection_12_months_medical,num,N
-Application Type,application_type,binary,Y
-Last week Pay,last_week_pay,num,N
-Accounts Delinquent,accounts_delinquent,num,N
-Total Collection Amount,total_collection_amount,discrete,N
-Total Current Balance,total_current_balance,discrete,N
-Total Revolving Credit Limit,total_revolving_credit_limit,num,N
-Loan Status,loan_status,binary,N
+variable_name_original,variable_name,variable_type,is_string,scalar
+Loan Amount,loan_amount,num,N,robust
+Funded Amount,funded_amount,num,N,robust
+Funded Amount Investor,funded_amount_investor,num,N,robust
+Term,term,num,N,robust
+Batch Enrolled,batch_enrolled,cat,Y,NA
+Interest Rate,interest_rate,num,N,robust
+Grade,grade,cat,Y,NA
+Sub Grade,sub_grade,cat,Y,NA
+Home Ownership,home_ownership,cat,Y,NA
+Employment Duration,employment_duration,num,N,robust
+Verification Status,verification_status,cat,Y,NA
+Payment Plan,payment_plan,binary,Y,NA
+Loan Title,loan_title,cat,Y,NA
+Debit to Income,debit_to_income,num,N,robust
+Delinquency - two years,delinquency_two_years,cat,N,NA
+Inquires - six months,inquires_six_months,cat,N,NA
+Open Account,open_account,num,N,robust
+Public Record,public_record,binary,N,NA
+Revolving Balance,revolving_balance,num,N,robust
+Revolving Utilities,revolving_utilities,num,N,robust
+Total Accounts,total_accounts,num,N,robust
+Initial List Status,initial_list_status,binary,Y,NA
+Total Received Interest,total_received_interest,num,N,robust
+Total Received Late Fee,total_received_late_fee,num,N,robust
+Recoveries,recoveries,num,N,robust
+Collection Recovery Fee,collection_recovery_fee,num,N,robust
+Collection 12 months Medical,collection_12_months_medical,num,N,robust
+Application Type,application_type,binary,Y,NA
+Last week Pay,last_week_pay,num,N,robust
+Accounts Delinquent,accounts_delinquent,num,N,robust
+Total Collection Amount,total_collection_amount,num,N,robust
+Total Current Balance,total_current_balance,num,N,robust
+Total Revolving Credit Limit,total_revolving_credit_limit,num,N,robust
+Loan Status,loan_status,binary,N,NA

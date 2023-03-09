@@ -1,0 +1,11 @@
+{
+    "logit": {
+        "model":"logit"
+
+    },
+    "lasso": {
+        "model":"lasso"
+
+    }
+
+}
