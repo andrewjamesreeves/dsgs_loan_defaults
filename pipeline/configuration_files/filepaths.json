@@ -4,6 +4,7 @@
         "test_data": "../data/master_data/test.csv",
         "reference_data": "../data/data_reference_file.csv",
         "preprocessed_data": "../data/preprocessed_data",
-        "output": "../output"
+        "output": "../output",
+        "results": "../output/results"
     }
 }
