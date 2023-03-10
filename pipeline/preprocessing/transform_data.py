@@ -63,7 +63,7 @@ def transform_numeric_variables(df, ref):
 
 def split_data(df):
 
-    training_data, test_data = train_test_split(df, test_size=0.2, random_state=3)
+    training_data, test_data = train_test_split(df, test_size=0.2, random_state=3, stratify= df["loan_status"])
 
     return training_data, test_data
 
