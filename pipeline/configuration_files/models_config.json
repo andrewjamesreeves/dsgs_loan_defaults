@@ -1,6 +1,6 @@
 {
     "logit": {
-        "variable_selection":"False",
+        "variable_selection":"lasso",
         "model":"logit",
         "solver":"liblinear",  
         "C":0.001, 
@@ -16,6 +16,7 @@
         "random_state":1234, 
         "class_weight":"balanced"
     },
+
     "lasso": {
         "model":"lasso",
         "penalty": "l1",
