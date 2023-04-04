@@ -9,7 +9,12 @@
     },
 
     "lasso": {
-        "model":"lasso"
+        "model":"lasso",
+        "penalty": "l1",
+        "solver":"liblinear",  
+        "C":0.001, 
+        "random_state":1234, 
+        "class_weight":"balanced"
 
     },
 
