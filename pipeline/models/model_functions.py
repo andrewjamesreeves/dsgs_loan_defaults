@@ -1,5 +1,4 @@
 import pandas as pd
-<<<<<<< HEAD
 import numpy as np
 =======
 from models.variable_selection_methods import apply_variable_selection
@@ -142,6 +141,6 @@ def apply_lasso(training_data, test_data, config):
     
     # Generate table with evaluation metrics
     evaluation_df = evaluation_metrics_df(Y_test, yhat, config)
-    
+
     return evaluation_df
     
