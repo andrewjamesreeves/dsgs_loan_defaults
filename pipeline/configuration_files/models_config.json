@@ -1,10 +1,20 @@
 {
     "logit": {
-        "model":"logit"
+        "variable_selection":"False",
+        "model":"logit",
+        "solver":"liblinear",  
+        "C":0.001, 
+        "random_state":1234, 
+        "class_weight":"balanced"
 
     },
-    "lasso": {
-        "model":"lasso"
+    "logit_pca": {
+        "variable_selection": "pca",
+        "model":"logit",
+        "solver":"liblinear",  
+        "C":0.001, 
+        "random_state":1234, 
+        "class_weight":"balanced"
 
     }
 
