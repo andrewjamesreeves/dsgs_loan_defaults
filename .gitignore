@@ -6,7 +6,7 @@ data/preprocessed_data/
 
 
 # Exclude all contents of the output folder
-/output
+output/
 
 
 # Byte-compiled / optimized / DLL files
