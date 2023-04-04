@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-=======
 from models.variable_selection_methods import apply_variable_selection
->>>>>>> 929c028caa15cfef74a1ab99d7d1e07d3c618c53
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import Lasso
