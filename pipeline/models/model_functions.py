@@ -136,14 +136,5 @@ def apply_lasso(training_data, test_data, config):
     # Generate table with evaluation metrics
     evaluation_df = evaluation_metrics_df(Y_test, yhat, config)
     
-    # get coefficients of parameters to select the best features
-    coefficients = logistic_lasso_model.coef_
-    importance = np.abs(coefficients)
-    
-    from sklearn.datasets import load_diabetes
-    X,y = load_diabetes(return_X_y=True)
-    features = load_diabetes()['feature_names']
-    print(features)
-    
     return evaluation_df
     
