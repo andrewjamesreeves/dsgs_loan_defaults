@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import Lasso
@@ -74,7 +75,7 @@ def apply_logit(training_data, test_data, config):
     # Create dataframe with predicted and actual values    
     error_df = pred_actual_df(yhat, Y_test)
    
-    # Generate the report using the target test and prediction values.
+     # Generate the report using the target test and prediction values.
     classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
     print(classif_report)
    
@@ -112,5 +113,37 @@ def apply_rfc(training_data, test_data, config):
 def apply_lasso(training_data, test_data, config):
     
     
-    return
+    # Split data
+    X_train, X_test, Y_train, Y_test = split_data(training_data, test_data)
+    
+    # Fit the model
+    logistic_lasso_model = LogisticRegression(penalty = config['penalty'],
+                                    solver=config['solver'],  
+                                    C=config['C'], 
+                                    random_state=config['random_state'], 
+                                    class_weight=config['class_weight']
+                                    )
+    
+    yhat = fit_and_predict(logistic_lasso_model, X_train, Y_train, X_test)
+    
+    # Create dataframe with predicted and actual values    
+    error_df = pred_actual_df(yhat, Y_test)
+    
+    # Generate the report using the target test and prediction values.
+    classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
+    print(classif_report)
+    
+    # Generate table with evaluation metrics
+    evaluation_df = evaluation_metrics_df(Y_test, yhat, config)
+    
+    # get coefficients of parameters to select the best features
+    coefficients = logistic_lasso_model.coef_
+    importance = np.abs(coefficients)
+    
+    from sklearn.datasets import load_diabetes
+    X,y = load_diabetes(return_X_y=True)
+    features = load_diabetes()['feature_names']
+    print(features)
+    
+    return evaluation_df
     
