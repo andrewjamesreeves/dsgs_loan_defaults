@@ -1,0 +1,13 @@
+# Exclude all csv files
+*.csv
+
+# Exclude all contents of the preprocessed output folder
+data/preprocessed_data
+
+
+# Exclude all contents of the output folder
+/output
+
+
+# Byte-compiled / optimized / DLL files
+*/__pycache__/
