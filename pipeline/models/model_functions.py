@@ -1,4 +1,5 @@
 import pandas as pd
+from models.variable_selection_methods import apply_variable_selection
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import Lasso
@@ -59,6 +60,9 @@ def evaluation_metrics_df(Y_test, yhat, config):
     
 
 def apply_logit(training_data, test_data, config):
+
+    if config['variable_selection'] != str('False'):
+        training_data, test_data = apply_variable_selection(training_data, test_data, config['variable_selection'])
 
     # Split data
     X_train, X_test, Y_train, Y_test = split_data(training_data, test_data)
