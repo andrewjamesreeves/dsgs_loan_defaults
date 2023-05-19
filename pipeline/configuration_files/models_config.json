@@ -8,9 +8,18 @@
         "class_weight":"balanced"
 
     },
-    "logit_pca": {
-        "variable_selection": "pca",
+    "logit_lasso": {
+        "variable_selection": "lasso",
         "model":"logit",
+        "solver":"liblinear",  
+        "C":0.001, 
+        "random_state":1234, 
+        "class_weight":"balanced"
+
+    },
+    "rcf_rf": {
+        "variable_selection": "rf",
+        "model":"random_forest",
         "solver":"liblinear",  
         "C":0.001, 
         "random_state":1234, 
