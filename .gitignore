@@ -2,11 +2,11 @@
 *.csv
 
 # Exclude all contents of the preprocessed output folder
-data/preprocessed_data
+data/preprocessed_data/
 
 
 # Exclude all contents of the output folder
-/output
+output/
 
 
 # Byte-compiled / optimized / DLL files
