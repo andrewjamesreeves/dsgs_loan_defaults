@@ -22,7 +22,7 @@ def split_data(training_data, test_data):
 
 def fit_and_predict(chosen_model, X_train, Y_train, X_test):
     # Fit the model
-    chosen_model.fit(X_train, Y_train)
+    chosen_model.fit(X_train, Y_train.values.ravel())
 
     # Predict values using the test data.
     yhat = chosen_model.predict(X_test)
@@ -49,7 +49,7 @@ def evaluation_metrics_df(Y_test, yhat, config):
     precision_macro, recall_macro, f1_macro, _ = precision_recall_fscore_support(Y_test, yhat, 
                                                           average='macro')
     
-    output = pd.DataFrame({'model': [config["model"]],
+    output = pd.DataFrame({'model': [config["model_name"]],
                            'precision_macro':[precision_macro],
                            'recall_macro':[recall_macro],
                            'f1_macro': [f1_macro],
