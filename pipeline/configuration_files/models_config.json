@@ -8,8 +8,8 @@
         "class_weight":"balanced"
 
     },
-    "logit_pca": {
-        "variable_selection": "pca",
+    "logit_rf": {
+        "variable_selection": "random_forest",
         "model":"logit",
         "solver":"liblinear",  
         "C":0.001, 
@@ -27,7 +27,8 @@
 
     },
 
-    "random_forest": {
+    "random_forest_rf": {
+        "variable_selection": "random_forest",
         "model": "random_forest"
     }
 
