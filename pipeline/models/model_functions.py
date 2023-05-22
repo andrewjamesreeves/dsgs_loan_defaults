@@ -92,6 +92,9 @@ def apply_logit(training_data, test_data, config):
 
 def apply_rfc(training_data, test_data, config):
     
+    if config['variable_selection'] != str('False'):
+        training_data, test_data = apply_variable_selection(training_data, test_data, config['variable_selection'])
+    
     # Split data
     X_train, X_test, Y_train, Y_test = split_data(training_data, test_data)
     
@@ -116,7 +119,7 @@ def apply_rfc(training_data, test_data, config):
 
 def apply_lasso(training_data, test_data, config):
     
-    
+
     # Split data
     X_train, X_test, Y_train, Y_test = split_data(training_data, test_data)
     
