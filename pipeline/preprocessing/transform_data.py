@@ -72,7 +72,7 @@ def remove_bad_vars(df):
 
     return df.drop(['payment_plan', 'accounts_delinquent'], axis=1)
 
-def main(df, data_ref, paths, dir_name):
+def main(df, data_ref, paths, dir_name, split=True):
 
     df = (df.pipe(format_column_names, data_ref)
         .pipe(split_categorical_variables, data_ref)
@@ -88,9 +88,14 @@ def main(df, data_ref, paths, dir_name):
 
     df = remove_bad_vars(df)
 
-    du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
+    if split == True:
+        du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'preprocessed_data.csv'))
 
-    #split data
-    training_data, test_data = split_data(df)
+        #split data
+        training_data, test_data = split_data(df)
 
-    return training_data, test_data
+        return training_data, test_data
+    else:
+        du.save_data(df, os.path.join(dir_name, paths['filepaths']['preprocessed_data'], 'test_data_preprocessed.csv'))
+        
+        return df
