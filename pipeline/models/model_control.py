@@ -37,28 +37,37 @@ def evaluation_metrics_df(Y_test, yhat, config):
                            })
     return output
 
-def run_models_and_combine_metrics(models_config, models, training_data, test_data):
+def run_models_and_combine_metrics(models_config, models, training_data, test_data, submission_data = None):
     
     metrics = pd.DataFrame()
+    metrics_submission = pd.DataFrame()
     
     for model in models_config:
         print(f'Running Model -> {model}')
-        Y_test, yhat, chosen_model = models[models_config[model]['model']](training_data, test_data, models_config[model])
+        Y_test, yhat, chosen_model, variable_selection_columns = models[models_config[model]['model']](training_data, test_data, models_config[model])
         
         model_output = evaluation_metrics_df(Y_test, yhat, models_config[model])
         # obtain metrics
         metrics = metrics.append(model_output)
-
+        
+        if model != "lasso" and submission_data is not None:
+            X_test_submission = submission_data[variable_selection_columns]
+            yhat_submission = chosen_model.predict(X_test_submission)
+    
     return metrics
 
 
-def main(training_data, test_data, reference_data, models_config, paths, dir_name):
+def main(training_data, test_data, reference_data, models_config, paths, dir_name, submission_data = None):
 
     models = get_available_models()
-
-    model_comparison = run_models_and_combine_metrics(models_config, models, training_data, test_data)
     
+    if submission_data is not None:
+            model_comparison  = run_models_and_combine_metrics(models_config, models, training_data, test_data, submission_data)
+    
+    else:
+            model_comparison = run_models_and_combine_metrics(models_config, models, training_data, test_data)
+            
     # save table  
     du.save_data(model_comparison, os.path.join(dir_name, paths['filepaths']['results'], 'model_comparison.csv'))
-
+    
     return
