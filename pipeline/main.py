@@ -23,12 +23,11 @@ def main():
 
     #pass data to transform data/preprocessing data areas
     training_data_pp, test_data_pp = td.main(training_data, reference_data, paths, dir_name, split=True)
+    submission_data_pp = td.main(test_data, reference_data, paths, dir_name, split=False)
 
     #pass data into models and combine evaluation metrics
-    mc.main(training_data_pp, test_data_pp, reference_data, models_config, paths, dir_name)
+    mc.main(training_data_pp, test_data_pp, reference_data, models_config, paths, dir_name, submission_data = submission_data_pp)
     
-    # prepcrocess test data
-    test_data = td.main(test_data, reference_data, paths, dir_name, split=False)
 
 
 if __name__ == "__main__":
