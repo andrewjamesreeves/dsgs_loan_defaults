@@ -37,7 +37,7 @@ def evaluation_metrics_df(Y_test, yhat, config):
                            })
     return output
 
-def run_models_and_combine_metrics(models_config, models, training_data, test_data, submission_data = None):
+def run_models_and_combine_metrics(models_config, models, training_data, test_data, paths, dir_name, submission_data = None):
     
     metrics = pd.DataFrame()
     metrics_submission = pd.DataFrame()
@@ -53,6 +53,12 @@ def run_models_and_combine_metrics(models_config, models, training_data, test_da
         if model != "lasso" and submission_data is not None:
             X_test_submission = submission_data[variable_selection_columns]
             yhat_submission = chosen_model.predict(X_test_submission)
+            submission_output = pd.DataFrame(data = {"ID" : submission_data["ID"],
+                                                        "Loan Status" : yhat_submission})
+
+            # save output  
+            du.save_data(submission_output, os.path.join(dir_name, paths['filepaths']['results'], f'submission_output_{model}.csv'))
+    
     
     return metrics
 
@@ -62,10 +68,10 @@ def main(training_data, test_data, reference_data, models_config, paths, dir_nam
     models = get_available_models()
     
     if submission_data is not None:
-            model_comparison  = run_models_and_combine_metrics(models_config, models, training_data, test_data, submission_data)
+            model_comparison  = run_models_and_combine_metrics(models_config, models, training_data, test_data, paths, dir_name, submission_data)
     
     else:
-            model_comparison = run_models_and_combine_metrics(models_config, models, training_data, test_data)
+            model_comparison = run_models_and_combine_metrics(models_config, models, training_data, paths, dir_name, test_data)
             
     # save table  
     du.save_data(model_comparison, os.path.join(dir_name, paths['filepaths']['results'], 'model_comparison.csv'))
