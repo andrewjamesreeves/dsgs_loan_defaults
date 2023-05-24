@@ -62,8 +62,10 @@ def apply_logit(training_data, test_data, config):
      # Generate the report using the target test and prediction values.
     classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
     print(classif_report)
+
+    features = X_test.columns.to_list()
    
-    return Y_test, yhat, chosen_model
+    return Y_test, yhat, chosen_model, features
 
 
 
@@ -87,7 +89,9 @@ def apply_rfc(training_data, test_data, config):
     classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
     print(classif_report)
     
-    return Y_test, yhat, chosen_model
+    features = X_test.columns.to_list()
+    
+    return Y_test, yhat, chosen_model, features
 
 
 
@@ -113,5 +117,7 @@ def apply_lasso(training_data, test_data, config):
     classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
     print(classif_report)
     
-    return Y_test, yhat, chosen_model
+    features = X_test.columns.to_list()
+    
+    return Y_test, yhat, chosen_model, features
     
