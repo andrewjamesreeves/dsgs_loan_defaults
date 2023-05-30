@@ -32,5 +32,4 @@
         "variable_selection" : "lasso",
         "random_state" :1234
     }
-
 }
