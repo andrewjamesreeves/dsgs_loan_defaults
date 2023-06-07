@@ -4,7 +4,6 @@ from models.variable_selection_methods import apply_variable_selection
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import Lasso
-from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import classification_report
 
 
@@ -27,7 +26,7 @@ def fit_and_predict(chosen_model, X_train, Y_train, X_test):
     # Predict values using the test data.
     yhat = chosen_model.predict(X_test)
     
-    return yhat
+    return yhat, chosen_model
 
 
     
@@ -40,25 +39,6 @@ def pred_actual_df(yhat, Y_test):
     
     return error_df
 
-def evaluation_metrics_df(Y_test, yhat, config):
-    # produce weighted metrics
-    precision_weighted, recall_weighted, f1_weighted, _ = precision_recall_fscore_support(Y_test, yhat, 
-                                                          average='weighted')
-    
-    # produce macro metrics
-    precision_macro, recall_macro, f1_macro, _ = precision_recall_fscore_support(Y_test, yhat, 
-                                                          average='macro')
-    
-    output = pd.DataFrame({'model': [config["model_name"]],
-                           'precision_macro':[precision_macro],
-                           'recall_macro':[recall_macro],
-                           'f1_macro': [f1_macro],
-                           'precision_weighted': [precision_weighted],
-                           'recall_weighted': [recall_weighted],
-                           'f1_weighted': [f1_weighted],
-                           })
-    return output
-    
 
 def apply_logit(training_data, test_data, config):
 
@@ -74,7 +54,7 @@ def apply_logit(training_data, test_data, config):
                                         random_state=config['random_state'], 
                                         class_weight=config['class_weight'])
             
-    yhat = fit_and_predict(logistic_regression_model, X_train, Y_train, X_test)
+    yhat, chosen_model = fit_and_predict(logistic_regression_model, X_train, Y_train, X_test)
    
     # Create dataframe with predicted and actual values    
     error_df = pred_actual_df(yhat, Y_test)
@@ -82,15 +62,17 @@ def apply_logit(training_data, test_data, config):
      # Generate the report using the target test and prediction values.
     classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
     print(classif_report)
+
+    features = X_test.columns.to_list()
    
-    # Generate table with evaluation metrics
-    evaluation_df = evaluation_metrics_df(Y_test, yhat, config)
-    
-    return evaluation_df
+    return Y_test, yhat, chosen_model, features
 
 
 
 def apply_rfc(training_data, test_data, config):
+    
+    if config['variable_selection'] != str('False'):
+        training_data, test_data = apply_variable_selection(training_data, test_data, config['variable_selection'])
     
     # Split data
     X_train, X_test, Y_train, Y_test = split_data(training_data, test_data)
@@ -98,7 +80,7 @@ def apply_rfc(training_data, test_data, config):
     # Fit the model
     rfc = RandomForestClassifier()
     
-    yhat = fit_and_predict(rfc, X_train, Y_train, X_test)
+    yhat, chosen_model = fit_and_predict(rfc, X_train, Y_train, X_test)
     
     # Create dataframe with predicted and actual values    
     error_df = pred_actual_df(yhat, Y_test)
@@ -107,16 +89,14 @@ def apply_rfc(training_data, test_data, config):
     classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
     print(classif_report)
     
-    # Generate table with evaluation metrics
-    evaluation_df = evaluation_metrics_df(Y_test, yhat, config)
+    features = X_test.columns.to_list()
     
-    return evaluation_df
+    return Y_test, yhat, chosen_model, features
 
 
 
 def apply_lasso(training_data, test_data, config):
-    
-    
+
     # Split data
     X_train, X_test, Y_train, Y_test = split_data(training_data, test_data)
     
@@ -128,7 +108,7 @@ def apply_lasso(training_data, test_data, config):
                                     class_weight=config['class_weight']
                                     )
     
-    yhat = fit_and_predict(logistic_lasso_model, X_train, Y_train, X_test)
+    yhat, chosen_model = fit_and_predict(logistic_lasso_model, X_train, Y_train, X_test)
     
     # Create dataframe with predicted and actual values    
     error_df = pred_actual_df(yhat, Y_test)
@@ -137,8 +117,7 @@ def apply_lasso(training_data, test_data, config):
     classif_report = classification_report(Y_test, yhat, target_names=["No default", "Default"])
     print(classif_report)
     
-    # Generate table with evaluation metrics
-    evaluation_df = evaluation_metrics_df(Y_test, yhat, config)
-
-    return evaluation_df
+    features = X_test.columns.to_list()
+    
+    return Y_test, yhat, chosen_model, features
     

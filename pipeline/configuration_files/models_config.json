@@ -8,8 +8,9 @@
         "class_weight":"balanced"
 
     },
-    "logit_rf": {
-        "variable_selection": "random_forest",
+  
+    "logit_pca": {
+        "variable_selection": "lasso",
         "model":"logit",
         "solver":"liblinear",  
         "C":0.001, 
@@ -27,9 +28,9 @@
 
     },
 
-    "random_forest_rf": {
-        "variable_selection": "random_forest",
-        "model": "random_forest"
+    "random_forest": {
+        "model": "random_forest",
+        "variable_selection" : "lasso",
+        "random_state" :1234
     }
-
 }
