@@ -21,7 +21,7 @@ def split_data(training_data, test_data):
 
 def fit_and_predict(chosen_model, X_train, Y_train, X_test):
     # Fit the model
-    chosen_model.fit(X_train, Y_train)
+    chosen_model.fit(X_train, Y_train.values.ravel())
 
     # Predict values using the test data.
     yhat = chosen_model.predict(X_test)

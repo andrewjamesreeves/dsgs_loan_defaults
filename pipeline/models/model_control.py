@@ -45,7 +45,7 @@ def run_models_and_combine_metrics(models_config, models, training_data, test_da
     for model in models_config:
         print(f'Running Model -> {model}')
         Y_test, yhat, chosen_model, variable_selection_columns = models[models_config[model]['model']](training_data, test_data, models_config[model])
-        
+       
         model_output = evaluation_metrics_df(Y_test, yhat, models_config[model])
         # obtain metrics
         metrics = metrics.append(model_output)
